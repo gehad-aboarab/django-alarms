@@ -4,7 +4,6 @@ from django.contrib import messages
 from .models import Alarm
 import time, json
 import datetime as dt
-from playsound import playsound
 from django.core.serializers.json import DjangoJSONEncoder
 import json
 from django.contrib.auth.mixins import (
