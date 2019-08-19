@@ -1,0 +1,21 @@
+{% extends "alarms/base.html" %}
+{% load crispy_forms_tags %}
+{% block body %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="bodrer-bottom mb-4">Create an account</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Sign up</button>
+            </div>
+        </form>
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                <a class="ml-2" href="{% url 'login' %}">Already have an account?</a>
+            </small>
+        </div>
+    </div>
+{% endblock body %}

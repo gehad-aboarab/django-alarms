@@ -1,0 +1,12 @@
+{% extends "alarms/base.html" %}
+{% block body %}    
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+            <a class="mr-2">{{ object.name }}</a>
+            <small class="text-muted">{{ object.date }}</small>
+            </div>
+            <h2>{{ object.time }}</h2>
+        </div>
+    </article>
+{% endblock %}

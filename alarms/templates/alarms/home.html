@@ -1,0 +1,51 @@
+{% extends "alarms/base.html" %}
+{% block head %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>
+
+    async function time_tracker(timeout){
+      let promise = new Promise((resolve, reject) => {setTimeout(() => resolve("done!"), timeout * 1000)});
+      let result = await promise;
+      var audio = new Audio('http://soundbible.com/mp3/analog-watch-alarm_daniel-simion.mp3');
+      audio.play();
+    }
+
+    function load_func() { 
+      $.ajax({
+            url: "ajax/",
+            data: "", 
+            contentType: "application/json; charset=utf-8", 
+            type: "GET",
+            success: function (data) {
+              var obj = JSON.parse(data);
+              var i;
+              for (i = 0; i < obj.timeouts.length; i++) { 
+                time_tracker(obj.timeouts[i]);
+              }
+            },
+            error: function () {
+              alert("Could not contact the server");
+            }
+        });
+    }
+    window.onload = load_func;
+
+  </script>
+{% endblock %}
+
+{% block body %}    
+    {% for alarm in alarms %}
+    <article class="media content-section">
+            <div class="media-body">
+              <div class="article-metadata">
+                <a class="mr-2">{{ alarm.name }}</a>
+                <small class="text-muted" id="alarm-date">{{ alarm.date }}</small>
+                <a class="btn btn-sm float-right" href="{% url 'alarm-delete' alarm.id %}">Delete</a>
+                <a class="btn btn-sm mr-1 float-right" href="{% url 'alarm-update' alarm.id %}">Edit</a>
+              </div>
+              <h2><a class="article-title" id="alarm-time" href="{% url 'alarm-detail' alarm.id %}">{{ alarm.time }}</a></h2>
+            </div>
+          </article>
+          <div id="sound"></div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "alarms/base.html" %}
+{% block body %}        
+    <h2>You're now logged out</h2>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log back in</a>
+        </small>
+    </div>
+{% endblock body %}

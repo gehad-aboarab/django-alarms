@@ -1,0 +1,16 @@
+{% extends "alarms/base.html" %}
+{% block body %}
+    <div class="content-section">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="bodrer-bottom mb-4">Delete Alarm</legend>
+                <h4>Are you sure you want to delete the selected alarm "{{ object.name }}"?</h4>
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-danger" type="submit">Delete</button>
+                <a class="btn btn-outline-secondary" href="{% url 'home' %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+{% endblock body %}
