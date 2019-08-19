@@ -1,1 +1,1 @@
-web: gunicorn django-alarms.wsgi
+web: gunicorn django_alarms.wsgi
