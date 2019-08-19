@@ -1,4 +1,5 @@
 # Django Alarms
+Web application that allows a user to manage their alarms. The application triggers a sound when necessary.
 
 ## Run the application
 ### Step 1
