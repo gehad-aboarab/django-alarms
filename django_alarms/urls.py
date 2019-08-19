@@ -20,17 +20,21 @@ from users import views as user_views
 from alarms import views as alarm_views
 
 urlpatterns = [
+    # Default django admin page url
     path('admin/', admin.site.urls),
     
+    # Alarm-related urls and the services that allow their execution
     path('', alarm_views.home, name='home'),
     path('alarm/<int:pk>/', alarm_views.AlarmDetailView.as_view(), name='alarm-detail'),
     path('alarm/<int:pk>/update', alarm_views.AlarmUpdateView.as_view(), name='alarm-update'),
     path('alarm/<int:pk>/delete', alarm_views.AlarmDeleteView.as_view(), name='alarm-delete'),
     path('alarm/new/', alarm_views.AlarmCreateView.as_view(), name='alarm-create'),
     
+    # User-related urls and the services that allow their execution
     path('register/', user_views.register, name='register'),
     path('login/', authentication_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', authentication_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     
+    # AJAX url for the JS function accessing the alarm calculations from server side
     path('ajax/', alarm_views.calculate_delays),
 ]

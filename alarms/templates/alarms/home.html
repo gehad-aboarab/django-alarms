@@ -1,8 +1,11 @@
+<!-- Home page that displays the user's alarms -->
 {% extends "alarms/base.html" %}
 {% block head %}
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script>
-
+    // Function called for each alarm supposed to go off.
+    // Waits for a timeout period that is the number
+    // of seconds until the alarm time and then sounds the alarm.
     async function time_tracker(timeout){
       let promise = new Promise((resolve, reject) => {setTimeout(() => resolve("done!"), timeout * 1000)});
       let result = await promise;
@@ -10,6 +13,9 @@
       audio.play();
     }
 
+    // Function to receive the timeout periods for all future alarms
+    // from the server side through an ajax request.
+    // Calls a python service function on the server side.
     function load_func() { 
       $.ajax({
             url: "ajax/",
@@ -19,6 +25,7 @@
             success: function (data) {
               var obj = JSON.parse(data);
               var i;
+              // The async function is called to wait for each alarm
               for (i = 0; i < obj.timeouts.length; i++) { 
                 time_tracker(obj.timeouts[i]);
               }
@@ -33,6 +40,7 @@
   </script>
 {% endblock %}
 
+<!-- Body part of the web page that displays the alarms -->
 {% block body %}    
     {% for alarm in alarms %}
     <article class="media content-section">

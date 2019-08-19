@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth.models import User
 
+# Class that represents an alarm in the database
 class Alarm(models.Model):
     name = models.CharField(max_length=150)
     date = models.DateField(default=timezone.now)
