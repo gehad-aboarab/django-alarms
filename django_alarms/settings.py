@@ -25,7 +25,7 @@ SECRET_KEY = 'ka^zl33yw4rke+_(vpuj^o-wzshke(17b8km-9of-%oaot4@6@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['django-alarms.herokuapp.com']
 
 
 # Application definition
