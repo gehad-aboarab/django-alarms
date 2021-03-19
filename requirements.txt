@@ -1,5 +1,5 @@
 celery==4.4.0rc3
-Django==2.2.4
+Django==2.2.18
 django-audiofield==0.10.0
 django-celery==3.3.1
 django-crispy-forms==1.7.2
